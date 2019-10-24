@@ -2,9 +2,6 @@ FROM debian:wheezy
 
 MAINTAINER Ilya Kogan <ikogan@flarecode.com>
 
-# Add the OpenMediaVault repository
-COPY openmediavault.list /etc/apt/sources.list.d/
-
 ENV DEBIAN_FRONTEND noninteractive
 
 # Fix resolvconf issues with Docker
