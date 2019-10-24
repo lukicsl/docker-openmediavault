@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Fix resolvconf issues with Docker
 RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 RUN echo "deb http://packages.openmediavault.org/public erasmus main" | tee -a /etc/apt/sources.list.d/openmediavault.list
-RUN RUN apt-get update -y; apt-get install wget
+RUN apt-get update -y; apt-get install wget
 RUN wget -O - http://packages.openmediavault.org/public/archive.key | apt-key add -
 
 # Install OpenMediaVault packages and dependencies
