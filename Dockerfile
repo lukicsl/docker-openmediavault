@@ -9,10 +9,12 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Fix resolvconf issues with Docker
 RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
+RUN echo "deb http://packages.openmediavault.org/public erasmus main" | sudo tee -a /etc/apt/sources.list.d/openmediavault.list
+RUN wget -O - http://packages.openmediavault.org/public/archive.key | sudo apt-key add -
 
 # Install OpenMediaVault packages and dependencies
-RUN apt-get update -y; apt-get install openmediavault-keyring postfix locales -y --force-yes
-RUN apt-get update -y; apt-get install openmediavault -y
+RUN apt-get update -y; apt-get install openmediavault-keyring postfix -y --force-yes
+RUN apt-get update -y; apt-get install php-apc openmediavault -y --force-yes
 
 # We need to make sure rrdcached uses /data for it's data
 COPY defaults/rrdcached /etc/default
